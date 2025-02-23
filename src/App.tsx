@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.scss';
 import todosFromServer from './api/todos';
-import users from './api/users';
 import { TodoList } from './components/TodoList';
+import users from './api/users';
 
 export const App = () => {
   const [userChosen, setUserChosen] = useState(0);
@@ -10,7 +10,7 @@ export const App = () => {
   const [todos, setTodos] = useState(todosFromServer);
   const [errorTitle, setErrorTitle] = useState(false);
   const [errorSelect, setErrorSelect] = useState(false);
-  const id = Math.max(...todos.map(item => item.id)) + 1;
+  const id = todos.length > 0 ? Math.max(...todos.map(item => item.id)) + 1 : 1;
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
